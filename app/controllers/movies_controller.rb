@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
         (sess_ratings != @all_ratings or sess_sort != nil))
       flash.keep
       # We store ratings as array, but to GET params they should pass as hash
-      ratings_params = Hash[*sess_ratings.collect {|k| [k, '1']}]
+      ratings_params = Hash[*sess_ratings.collect {|k| [k, '1']}.flatten]
       return redirect_to movies_path(nil, {:sort => sess_sort, :ratings => ratings_params})
     end
 
